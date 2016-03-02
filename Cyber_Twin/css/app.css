@@ -1,0 +1,9 @@
+body {
+  padding-top: 70px;
+}
+
+button[id$="-button"]{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display:block;
+}

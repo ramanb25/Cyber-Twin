@@ -7,7 +7,139 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
         # code...
          echo "<script>window.location.assign('login.php')</script>";
     }
- 
+        
+        //IS EVENT GOING ON
+        $going_on=false;
+        $start_time_is="";;
+            include('db.php');
+            
+            $table="lunch_tea";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    //start_time_is is deprecated can remove it
+                    $start_time_is="$rows[0]";
+                    //echo $row[0];
+                    //echo $start_time_is;
+                  }
+            }
+
+            $table="job";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                    //echo $start_time_is; 
+                  }
+            }
+
+            $table="production_stoppage";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+            $table="precautionary_check";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+            $table="machine_failure";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+
+            $table="pm";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+            $table="operator_unavailability";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+
+            $table="setup_change";
+            $query="select * from `$table` where end_time='NULL' and username='".$_SESSION['mysesi']."'";
+            //echo $query;
+            $result=$db->query($query);
+            $rows=mysqli_num_rows ($result);
+            if($rows>0){
+                $going_on=$table;
+                while ($row = $result->fetch_row()) {
+                    $start_time_is="$rows[0]";
+                  }
+            }
+
+
+            echo $start_time_is;
+
+            if(!isset($_POST["start"]))
+            {
+                $condition2=true;
+                            }
+            else 
+                $condition2=false;
+            //echo $going_on;
+            //send to event   post event name
+
+            ?>
+            <form name='fr' action='index.php?started=1' method='POST'>
+            <input type='hidden' name='event_name' value='<?php echo $going_on ;?>'>
+            <input type='hidden' name='start' value='1'>
+            </form>
+            <script type='text/javascript'>
+            var condition="<?php echo $going_on ?>";
+            var condition2= "<?php echo $condition2; ?>";
+            if(condition!=false && condition2)
+            document.fr.submit();
+            </script>
+
+<?php
 }
 else
      echo "<script>window.location.assign('login.php')</script>";
@@ -87,10 +219,9 @@ else
         require_once('Database.php');
         require_once('class_button.php');
         include 'chart.php';
-        //echo "raman";
+
 
         $database = new Buttons();
-        //echo "raman";
         //$database->connect();
         //$query="select * from cart";
         if(isset($_POST["lvl"]))
@@ -98,9 +229,9 @@ else
         else
           $lvl=NULL;
         $event_name="";
-        //echo $_POST["name"];
-    //    echo $lvl;
-        if($temp=$database->get_buttons($lvl))
+        //echo $lvl;
+        //echo $going_on;
+        if(($temp=$database->get_buttons($lvl)) && !$going_on)
           {
                 ?><div class="container">
                 <div class="centered text-center col-centered">
@@ -125,7 +256,7 @@ else
                 ?></div></div><?php
 
           }
-        if(!$temp&&isset($_POST["event_name"])) :
+        if((!$temp && !$going_on)  || isset($_POST["start"])   ) :
          // echo "d";
 
         $event_name=$_POST["event_name"];
@@ -166,6 +297,7 @@ else
                                  </div>
                                   <button type="button" id ="production_stoppage-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                                   <p>Duration : <span id = "production_stoppage-duration">00:00:00</span></p>
+                                <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                                 </form>
                         </div>
                             
@@ -200,6 +332,7 @@ else
 
                     <button type="button" id ="operator_unavailability-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                     <p>Duration : <span id = "operator_unavailability-duration">00:00:00</span></p>
+                    <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                   </form>
                     </div>
 
@@ -233,6 +366,7 @@ else
                   </div>
                      <button type="button" id ="job-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                       <p>Duration : <span id = "job-duration">00:00:00</span></p>
+                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                  </form>
               </div>
 
@@ -244,8 +378,12 @@ else
              ?>
              <div id="precautionary_check" class="tab-pane">
                       <h3>Precautionary Check</h3>
+                      <form class="form" id="precautionary_check-form">
+                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                       <button type="button" id ="precautionary_check-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                       <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
+                     
+                        </form>
                     </div>
 
 
@@ -294,6 +432,7 @@ else
                   </div>
                      <button type="button" id ="machine_failure-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                      <p>Duration : <span id = "machine_failure-duration">00:00:00</span></p>
+                     <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
               </form>
                 </div>
 
@@ -307,16 +446,24 @@ else
 
             <div id="lunch_tea" class="tab-pane">
                       <h3>Lunch/Tea</h3>
+                      <form class="form" id="lunch_tea-form">
+                      
+                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
+                       
+
                       <button type="button" id ="lunch_tea-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                       <p>Duration : <span id = "lunch_tea-duration">00:00:00</span></p>
+                      </form>
                     </div>
                     <div id="precautionary_check" class="tab-pane fade">
                       <h3>Precautionary Check</h3>
+                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                       <button type="button" id ="precautionary_check-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                       <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
                     </div>
                     <div id="pm" class="tab-pane fade">
                       <h3>Preventive Maintenance</h3>
+                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                     <button type="button" id ="pm-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                     <p>Duration : <span id = "pm-duration">00:00:00</span></p>
                     </div>
@@ -349,6 +496,7 @@ else
                     </div>
                        <button type="button" id ="setup_change-button" class="btn btn-primary btn-lg center-block">Start Event</button>
                        <p>Duration : <span id = "setup_change-duration">00:00:00</span></p>
+                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                 </form>
                   </div>
 <div>

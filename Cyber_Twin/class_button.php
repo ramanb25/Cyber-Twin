@@ -1,6 +1,6 @@
 <?php
-
-class Buttons extends Database {
+include('db.php');
+class Buttons  {
 	
 		public $buttons=array();
 		
@@ -12,8 +12,7 @@ class Buttons extends Database {
 				//echo $query;
 				//statement($query);
 				include('db.php');
-				//echo $query;
-				if($fetch=$db->query("".$query."")) {
+				if($fetch=$db->query($query)) {
 						$temp = array();
 						 while ($row = $fetch->fetch_row()) {
 	        				 $temp[$row[0]]=array($row[1],$row[2]);
@@ -29,7 +28,8 @@ class Buttons extends Database {
 				$query="select id,name,show_name from buttons where under = $under";
 				//echo $query;
 				//statement($query);
-				if($fetch=$this->execute($query)) {
+				include('db.php');
+				if($fetch=$db->query($query)) {
 						$temp = array();
 						 while ($row = $fetch->fetch_row()) {
 	        				 $temp[$row[0]]=array($row[1],$row[2]);

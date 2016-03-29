@@ -5,6 +5,7 @@ class Database  {
 		
 
 		public function Connect() {
+		//	echo "dd";
 				$connect  = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 				if(!$connect->connect_errno) {
 						return $connect;
@@ -56,6 +57,7 @@ class Database  {
 		 * @return boolean
 		 */
 		public function execute($query) {
+			//echo "dd";
 				$obj = $this->Connect();
 				if(isset($query) && !empty($query)) {
 						$result = $obj->query("$query");

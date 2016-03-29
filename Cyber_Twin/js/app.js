@@ -9,6 +9,19 @@ var pm_event = new Event("pm");
 var production_stoppage = new Event("production_stoppage");
 var production_stoppage = new Event("operator_unavailability");
 
+
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+
 function Event(id){
   this.table = id;
   var context = this;
@@ -16,12 +29,49 @@ function Event(id){
   this.duration_span = $("#"+id+"-duration");
   this.button = $("#"+id+"-button");
   this.form = $("#"+id+"-form");
+
+  if(getParameterByName('started')==1)
+   {  started = true;
+     // alert(getParameterByName('start'));
+      currentSpan = context.duration_span;
+      context.button.text("Stop Event");
+      
+      currentSpan.text("started on:");
+    }
+
+
   this.button.click(function(){
     if(!started){
-      starttime =   new Date().toLocaleString(),
+      var starttime =  " <?php $timezone=new DateTimeZone(\"ASIA/KOLKATA\");        $now = new DateTime();        $now->setTimezone($timezone );    echo $now->format('Y-m-d H:i:s');      ?>"
       currentSpan = context.duration_span;
       started = true;
+
       context.button.text("Stop Event");
+
+         var data = {table: context.table,
+              start_time: starttime,
+              end_time: "NULL",
+              duration: "NULL",
+              extra: JSON.stringify(context.form.serializeArray())
+      };
+
+         $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "submit.php", //Relative or absolute path to response.php file
+        data: data,
+        success: function(data) {
+          //started = false;
+         // context.button.prop('disabled',false);
+         // context.button.text("Start Event");
+         // currentSpan.text("00:00:00");
+         // seconds = minutes = hours = 0;
+         // alert("Event submitted successfully");
+        }
+      });
+
+
+
       timer();
     }
     else{
@@ -39,7 +89,7 @@ function Event(id){
       $.ajax({
         type: "POST",
         dataType: "json",
-        url: "submit.php", //Relative or absolute path to response.php file
+        url: "submit2.php", //Relative or absolute path to response.php file
         data: data,
         success: function(data) {
           started = false;

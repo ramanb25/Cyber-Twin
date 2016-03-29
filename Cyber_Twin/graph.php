@@ -1,16 +1,6 @@
 <?php
-session_start();
- $manager=1;
-if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
-{
-    if (!$_SESSION['mytype']==$manager) {
-        # code...
-         echo "<script>window.location.assign('login.php')</script>";
-    }
- 
-}
-else
-     echo "<script>window.location.assign('login.php')</script>";
+  include('manager_functions.php');
+  is_Manager_Logged_In();
 
 ?>
 <!DOCTYPE html>
@@ -79,20 +69,30 @@ else
 
 
 
-<p id="demo"></p>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <div id="chart_div"></div>
-      
+     
 
- <div id="visualization" width="15000" height="15000"></div>
- <div id="visualizatio2" width="15000" height="15000"></div>
+<div class="container">
+                <div class="centered text-center col-centered">
         <?php
         if(!isset($_POST['timeline']) && !isset($_POST['past_data'])){
-				?>
+        			include('db.php');
+			         ongoing_jobs();
+
+
+
+
+
+
+
+
+				?>      
 				        <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
-				      <form  method="POST" action="graph.php">
+				      <form  method="POST" action="timeline.php">
 				      <input type="hidden" value="timeline" name="timeline"></input>
-				      <input type="image" src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo $value;?>">
+				      <input type="image" src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
 				      <h4><?php echo "Timeline";?></h4>
 				      </form>
 				      </div>
@@ -100,54 +100,40 @@ else
 				      <form  method="POST" action="graph.php">
 				      <input type="hidden" value="past_data" name="past_data"></input>
 				      <input type="image"  src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
-				      <h4><?php echo "Past Data";?></h4>
+				      <h4><?php echo "Past Failure Data";?></h4>
 				      </form>
 				      </div>
-				      <?php
- 		 }
-
-      if(isset($_POST['timeline'])){
-       // include 'chart.php';
-        //$table='job';
-
-         require_once('Database.php');
-        require_once('class_button.php');
-        include 'chart.php';
-
-        if(!isset($_POST["event_name"])){
-        $database = new Buttons();
-         if($temp=$database->get_buttons(NULL))
-          {
-                ?><div class="container">
-                <div class="centered text-center col-centered">
-                <br>
-                <br>
-                <br><?php
-            foreach ($temp as $key => $value) {
-              # code...
-              //echo $value;
-              ?>
-
-          <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
-              <form  method="POST" action="graph.php">
-              <input type="hidden" class="btn btn-info" name="lvl" value="<?php echo $key;?>">
-              <input type="hidden" class="btn btn-info" name="event_name" value="<?php echo $value[0];?>">
-              <input type="hidden" class="btn btn-info" name="timeline" value="<?php echo $value[0];?>">
-              <input type="image" src="/Cyber_Twin/icons/<?php echo $key; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
-              <h3><?php echo $value[1];?></h3>
+              <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
+              <form  method="POST" action="GMICamShaftPlot.php">
+              <input type="hidden" value="past_data" name="past_data"></input>
+              <input type="image"  src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
+              <h4><?php echo "GMI Cam shaftPlot";?></h4>
               </form>
               </div>
-              <?php
-            }
-                ?></div></div><?php
-
-          }
-      }
-      else{
-        $graph= new chart();
-        $graph->show($_POST["event_name"],"MONTH",1);}
-
-      }
+              <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
+              <form  method="POST" action="NALTMainShaftPlot.php">
+              <input type="hidden" value="past_data" name="past_data"></input>
+              <input type="image"  src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
+              <h4><?php echo "NALTMainShaftPlot";?></h4>
+              </form>
+              </div>
+              <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
+              <form  method="POST" action="ran.php">
+              <input type="hidden" value="past_data" name="past_data"></input>
+              <input type="image"  src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
+              <h4><?php echo "Timeline All events";?></h4>
+              </form>
+              </div>
+              <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
+              <form  method="POST" action="LunchTeaPlot.php">
+              <input type="hidden" value="past_data" name="past_data"></input>
+              <input type="image"  src="/Cyber_Twin/icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
+              <h4><?php echo "Lunch Time Daywise";?></h4>
+              </form>
+              </div>
+              </div></div>
+				      <?php
+ 		 }
 
 
 
@@ -156,7 +142,7 @@ else
         $table='job';
 
         $graph= new chart();
-        $graph->show($table,"MONTH",0);}
+        $graph->past_data($table,"MONTH",0);}
 
 
 

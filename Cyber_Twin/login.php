@@ -40,7 +40,6 @@ session_destroy();
 <?php
 require_once('dbconfig.php');
 include('db.php');
-
 if(isset($_POST['password'])    &&    isset($_POST['username'])){
 $username=$_POST['username'];
 $password=$_POST['password'];

@@ -247,7 +247,7 @@ else
               <form  method="POST" action="index.php">
               <input type="hidden" class="btn btn-info" name="lvl" value="<?php echo $key;?>">
               <input type="hidden" class="btn btn-info" name="event_name" value="<?php echo $value[0];?>">
-              <input type="image" src="/Cyber_Twin/icons/<?php echo $key; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
+              <input type="image" src="/Cyber_Twin/icons/<?php echo $value[0]; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
               <h3><?php echo $value[1];?></h3>
               </form>
               </div>
@@ -269,6 +269,7 @@ else
              <?php if($event_name=="production_stoppage"): ?>
 
                       <div id="production_stoppage" >
+                                   <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                                   <h3>Production Stoppage</h3>
                                   <form class="form" id="production_stoppage-form">
                                   <h4>Cause</h4>
@@ -295,7 +296,8 @@ else
                                          <input type="radio"  name="cause" value="No Demand" > No Demand
                                      </label>
                                  </div>
-                                  <button type="button" id ="production_stoppage-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                                 <br>
+                                  <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="production_stoppage-button">
                                   <p>Duration : <span id = "production_stoppage-duration">00:00:00</span></p>
                                 <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                                 </form>
@@ -310,6 +312,7 @@ else
 
 
              <div id="operator_unavailability" class="tab-pane">
+              <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                     <h3>Operator Unavailability</h3>
                     <form class="form" id="operator_unavailability-form">
                     <h4>Cause</h4>
@@ -329,8 +332,8 @@ else
 
 
 
-
-                    <button type="button" id ="operator_unavailability-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                   <br>
+                   <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="operator_unavailability-button" >
                     <p>Duration : <span id = "operator_unavailability-duration">00:00:00</span></p>
                     <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                   </form>
@@ -341,6 +344,7 @@ else
              <?php if($event_name=="job"): ?>
 
                       <div id="job" class="tab-pane">
+                       <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                   <h3>Job</h3>
                     <form class="form" id="job-form">
                     <h4>Select Job Type</h4>
@@ -364,7 +368,9 @@ else
                           <input type="radio" id="c3" name="component" value="GMI Main Shaft" > GMI Main Shaft
                       </label>
                   </div>
-                     <button type="button" id ="job-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                  <br>
+
+                     <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="job-button" >
                       <p>Duration : <span id = "job-duration">00:00:00</span></p>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                  </form>
@@ -377,10 +383,11 @@ else
             <?php if($event_name=="precautionary_check"):
              ?>
              <div id="precautionary_check" class="tab-pane">
+              <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                       <h3>Precautionary Check</h3>
                       <form class="form" id="precautionary_check-form">
                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                      <button type="button" id ="precautionary_check-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                     <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="precautionary_check-button" >
                       <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
                      
                         </form>
@@ -392,6 +399,7 @@ else
             <?php if($event_name=="machine_failure"): ?>
 
                      <div id="machine_failure" class="tab-pane">
+                      <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                     <h3>Machine Failure</h3>
                     <form class="form" id="machine_failure-form">
                     <h4>Failed Unit</h4>
@@ -430,7 +438,8 @@ else
                           <input type="radio" name="failure_mode" value="5" > 5
                       </label>
                   </div>
-                     <button type="button" id ="machine_failure-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                  <br>
+                    <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="machine_failure-button" >
                      <p>Duration : <span id = "machine_failure-duration">00:00:00</span></p>
                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
               </form>
@@ -445,26 +454,29 @@ else
 
 
             <div id="lunch_tea" class="tab-pane">
+             <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                       <h3>Lunch/Tea</h3>
                       <form class="form" id="lunch_tea-form">
                       
                         <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                        
 
-                      <button type="button" id ="lunch_tea-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                      <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="lunch_tea-button">
                       <p>Duration : <span id = "lunch_tea-duration">00:00:00</span></p>
                       </form>
                     </div>
                     <div id="precautionary_check" class="tab-pane fade">
+                     <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                       <h3>Precautionary Check</h3>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                      <button type="button" id ="precautionary_check-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                      <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="precautionary_check-button" >
                       <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
                     </div>
                     <div id="pm" class="tab-pane fade">
+                     <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
                       <h3>Preventive Maintenance</h3>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                    <button type="button" id ="pm-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                    <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="pm-button" >
                     <p>Duration : <span id = "pm-duration">00:00:00</span></p>
                     </div>
                     <div id="setup_change" class="tab-pane fade">
@@ -494,7 +506,7 @@ else
                            <input type="radio"  name="new_setup" value="GMI Main Shaft" > GMI Main Shaft
                        </label>
                     </div>
-                       <button type="button" id ="setup_change-button" class="btn btn-primary btn-lg center-block">Start Event</button>
+                       <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="setup_change-button" >
                        <p>Duration : <span id = "setup_change-duration">00:00:00</span></p>
                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                 </form>

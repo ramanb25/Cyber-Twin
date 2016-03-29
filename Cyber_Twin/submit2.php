@@ -20,6 +20,7 @@ $table = $_POST['table'];
 //$start_time = $_POST['start_time'];
 $end_time = $_POST['end_time'];
 $duration = $_POST['duration'];
+$start_time = $_POST['start_time'];
  if($end_time==="NULL")
     $end_time="NULL";
   else {
@@ -33,10 +34,10 @@ $user=$_SESSION['mysesi'];
 //TODO
 $duration=1;
 
-    $sql = "UPDATE `$table` SET `end_time`='$end_time',`duration`='$duration' WHERE end_time='NULL' and username='$user'";
+    $sql = "UPDATE `$table` SET `end_time`='$end_time',`duration`='$duration' WHERE end_time='NULL' and start_time='$start_time' and username='$user'";
     $db->query($sql);
 
-    $sql ="SELECT TIMESTAMPDIFF(SECOND,start_time,end_time) from `$table` where end_time='$end_time' and username='$user'";
+    $sql ="SELECT TIMESTAMPDIFF(SECOND,start_time,end_time) from `$table` where end_time='$end_time' and start_time='$start_time' and username='$user'";
    // echo $sql;
     $result=$db->query($sql);
                 while ($rows = $result->fetch_row()) {
@@ -45,7 +46,7 @@ $duration=1;
                     //echo $start_time_is;
                   }
             
-    $sql = "UPDATE `$table` SET `duration`='$duration' WHERE end_time='$end_time' and username='$user'";
+    $sql = "UPDATE `$table` SET `duration`='$duration' WHERE end_time='$end_time' and and start_time='$start_time' username='$user'";
     $db->query($sql);
           
 echo json_encode($sql);

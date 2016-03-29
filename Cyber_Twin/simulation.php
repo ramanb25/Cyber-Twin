@@ -10,9 +10,7 @@
     </head>
     <body>
        
-        <div>
-            <input type="text" id="messageinput"/>
-        </div>
+        
         <div>
             <button type="button" onclick="openSocket();" >Open</button>
             <button type="button" onclick="send();" >Send</button>

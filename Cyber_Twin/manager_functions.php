@@ -40,7 +40,7 @@ function ongoing_jobs(){
 
 											  	}
 
-											  	$query="select * from operator_unavailability where end_time =' NULL';";
+											  	$query="select * from operator_unavailability where end_time ='NULL';";
 
 											    $result=$db->query($query);
 											    //echo $query;
@@ -96,7 +96,7 @@ function ongoing_jobs(){
 
 
 
-											  	$query="select * from machine_failure where end_time =' NULL';";
+											  	$query="select * from machine_failure where end_time ='NULL';";
 
 											    $result=$db->query($query);
 											    //echo $query;
@@ -114,7 +114,7 @@ function ongoing_jobs(){
 
 											  	}
 
-											  	  	$query="select * from precautionary_check where end_time =' NULL';";
+											  	  	$query="select * from precautionary_check where end_time ='NULL';";
 
 											    $result=$db->query($query);
 											    //echo $query;

@@ -34,19 +34,19 @@ function Event(id){
    {  started = true;
      // alert(getParameterByName('start'));
       currentSpan = context.duration_span;
-      context.button.text("Stop Event");
-      
-      currentSpan.text("started on:");
+       context.button.attr('src', '/Cyber_Twin/icons/stop.png');
+      $("#duration").fadeOut();
+      starttime=getParameterByName('starttime');
     }
 
 
   this.button.click(function(){
     if(!started){
-      var starttime =  " <?php $timezone=new DateTimeZone(\"ASIA/KOLKATA\");        $now = new DateTime();        $now->setTimezone($timezone );    echo $now->format('Y-m-d H:i:s');      ?>"
+     // var starttime;
       currentSpan = context.duration_span;
       started = true;
 
-      context.button.text("Stop Event");
+      context.button.attr('src', '/Cyber_Twin/icons/stop.png');
 
          var data = {table: context.table,
               start_time: starttime,
@@ -61,6 +61,8 @@ function Event(id){
         url: "submit.php", //Relative or absolute path to response.php file
         data: data,
         success: function(data) {
+          starttime=data;
+         // alert(starttime);
           //started = false;
          // context.button.prop('disabled',false);
          // context.button.text("Start Event");
@@ -77,6 +79,7 @@ function Event(id){
     else{
       context.button.prop('disabled',true);
       clearTimeout(t);
+      //alert(starttime);
       var data = {table: context.table,
               start_time: starttime,
               end_time: new Date().toLocaleString(),
@@ -94,7 +97,7 @@ function Event(id){
         success: function(data) {
           started = false;
           context.button.prop('disabled',false);
-          context.button.text("Start Event");
+         context.button.attr('src', '/Cyber_Twin/icons/start.png');
           currentSpan.text("00:00:00");
           seconds = minutes = hours = 0;
           alert("Event submitted successfully");

@@ -16,7 +16,7 @@
     <meta name="author" content="">
 
     <title>Cyber Twin</title>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="js/jquery-1.12.2.js"></script>
      <script src="js/app.js"></script>
 
     <!-- Bootstrap Core CSS -->
@@ -70,7 +70,7 @@
 
 
 <p id="demo"></p>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
   <div id="chart_div"></div>
       
 

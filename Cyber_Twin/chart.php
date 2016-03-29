@@ -2,6 +2,7 @@
  require_once('dbconfig.php');
 //require_once ('../Cyber_Twin/src/jpgraph.php');
 //require_once ('../Cyber_Twin/src/jpgraph_bar.php');
+ 
 
 //include 'x.php';
 /**
@@ -193,11 +194,11 @@ class chart
 
            //foreach ($values as $key => $value) echo $value[0];
           ?>
-                    
+               <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>     
           <script type="text/javascript">
 
            
-            
+             
 
              google.charts.load('current', {packages: ['corechart', 'bar']});
           google.charts.setOnLoadCallback(drawRightY);

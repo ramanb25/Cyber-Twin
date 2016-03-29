@@ -4,7 +4,7 @@ include 'db.php';
  //$sql = "INSERT INTO '$table' VALUES ('$start_time', '$end_time', '$duration')";
    // $db->query($sql);
 $table = $_POST['table'];
-$start_time = $_POST['start_time'];
+//$start_time = $_POST['start_time'];
 $end_time = $_POST['end_time'];
 $duration = $_POST['duration'];
  if($end_time==="NULL")
@@ -76,5 +76,5 @@ switch($table)
     $db->query($sql);
     break;
 }
-echo json_encode($sql);
+echo json_encode($start_time);
 ?>

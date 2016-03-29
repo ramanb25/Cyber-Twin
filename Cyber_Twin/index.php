@@ -10,7 +10,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
         
         //IS EVENT GOING ON
         $going_on=false;
-        $start_time_is="";;
+        $start_time_is=  array();
             include('db.php');
             
             $table="lunch_tea";
@@ -22,7 +22,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
                     //start_time_is is deprecated can remove it
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                     //echo $row[0];
                     //echo $start_time_is;
                   }
@@ -36,7 +36,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                     //echo $start_time_is; 
                   }
             }
@@ -49,7 +49,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
@@ -61,7 +61,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
@@ -73,7 +73,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
@@ -86,7 +86,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
@@ -98,7 +98,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
@@ -111,12 +111,12 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             if($rows>0){
                 $going_on=$table;
                 while ($row = $result->fetch_row()) {
-                    $start_time_is="$rows[0]";
+                    $start_time_is[$table]="$rows[0]";
                   }
             }
 
 
-            echo $start_time_is;
+           // echo $start_time_is;
 
             if(!isset($_POST["start"]))
             {
@@ -128,7 +128,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             //send to event   post event name
 
             ?>
-            <form name='fr' action='index.php?started=1' method='POST'>
+            <form name='fr' action='started_Events.php' method='POST'>
             <input type='hidden' name='event_name' value='<?php echo $going_on ;?>'>
             <input type='hidden' name='start' value='1'>
             </form>
@@ -136,7 +136,7 @@ if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype']))
             var condition="<?php echo $going_on ?>";
             var condition2= "<?php echo $condition2; ?>";
             if(condition!=false && condition2)
-            document.fr.submit();
+            ;
             </script>
 
 <?php
@@ -158,7 +158,7 @@ else
     <meta name="author" content="">
 
     <title>Cyber Twin</title>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery-1.12.2.js"></script>
      <script src="js/app.js"></script>
       <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -206,6 +206,9 @@ else
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                 </ul>
+               <form name="logout" action="started_events.php" class="navbar-form navbar-right"  method="post">
+                        <button type="submit" class="btn btn-primary">Old Events</button>
+                   </form>
                   <form name="logout" action="logout.php" class="navbar-form navbar-right"  method="post">
                         <button type="submit" class="btn btn-primary">Logout</button>
                    </form>
@@ -216,6 +219,21 @@ else
     </nav>
 
        <?php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         require_once('Database.php');
         require_once('class_button.php');
         include 'chart.php';
@@ -231,7 +249,7 @@ else
         $event_name="";
         //echo $lvl;
         //echo $going_on;
-        if(($temp=$database->get_buttons($lvl)) && !$going_on)
+        if(($temp=$database->get_buttons($lvl)) )
           {
                 ?><div class="container">
                 <div class="centered text-center col-centered">
@@ -244,7 +262,7 @@ else
               ?>
 
           <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
-              <form  method="POST" action="index.php">
+              <form  method="POST" action="event.php">
               <input type="hidden" class="btn btn-info" name="lvl" value="<?php echo $key;?>">
               <input type="hidden" class="btn btn-info" name="event_name" value="<?php echo $value[0];?>">
               <input type="image" src="/Cyber_Twin/icons/<?php echo $value[0]; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
@@ -256,274 +274,21 @@ else
                 ?></div></div><?php
 
           }
-        if((!$temp && !$going_on)  || isset($_POST["start"])   ) :
+     //   if((!$temp && !$going_on)  || isset($_POST["start"])   ) :
          // echo "d";
 
-        $event_name=$_POST["event_name"];
-
-        ?>
-
-
-            
-<div class="centered text-center col-centered">
-             <?php if($event_name=="production_stoppage"): ?>
-
-                      <div id="production_stoppage" >
-                                   <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                                  <h3>Production Stoppage</h3>
-                                  <form class="form" id="production_stoppage-form">
-                                  <h4>Cause</h4>
-                                  <div class="btn-group" data-toggle="buttons">
-                                         <label class="btn btn-default active">
-                                             <input type="radio"  name="cause" value="Raw Material Unavailable" checked> Raw Material Unavailable
-                                         </label>
-                                         <label class="btn btn-default">
-                                             <input type="radio"  name="cause" value="Tools Unavailable" > Tools Unavailable
-                                         </label>
-                                          <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Tool Inspection"> Tool Inspection
-                                      </label>
-                                     <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Tool Change" > Tool Change
-                                     </label>
-                                     <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Coolant Refilling" > Coolant Refilling
-                                     </label>
-                                     <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Air Failure" > Air Failure
-                                     </label>
-                                     <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="No Demand" > No Demand
-                                     </label>
-                                 </div>
-                                 <br>
-                                  <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="production_stoppage-button">
-                                  <p>Duration : <span id = "production_stoppage-duration">00:00:00</span></p>
-                                <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                                </form>
-                        </div>
-                            
-
-
-            <?php  endif; ?>
-
-
-         <?php if($event_name=="operator_unavailability"): ?>
-
-
-             <div id="operator_unavailability" class="tab-pane">
-              <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                    <h3>Operator Unavailability</h3>
-                    <form class="form" id="operator_unavailability-form">
-                    <h4>Cause</h4>
-                    <div class="btn-group" data-toggle="buttons">
-                       <label class="btn btn-default active">
-                           <input type="radio"  name="cause" value="Busy with other machine" checked> Busy with other machine
-                       </label>
-                       <label class="btn btn-default">
-                           <input type="radio"  name="cause" value="Busy with official work" > Busy with official work
-                       </label>
-                        <label class="btn btn-default">
-                       <input type="radio"  name="cause" value="Personal needs"> Personal needs
-                    </label>
-                   </div>
-
-
-
-
-
-                   <br>
-                   <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="operator_unavailability-button" >
-                    <p>Duration : <span id = "operator_unavailability-duration">00:00:00</span></p>
-                    <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                  </form>
-                    </div>
-
-                        <?php  endif; ?>
-
-             <?php if($event_name=="job"): ?>
-
-                      <div id="job" class="tab-pane">
-                       <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                  <h3>Job</h3>
-                    <form class="form" id="job-form">
-                    <h4>Select Job Type</h4>
-                    <div class="btn-group" data-toggle="buttons">
-                       <label class="btn btn-default active">
-                           <input type="radio" id="jt1" name="job_type" value="Normal" checked> Normal
-                       </label>
-                       <label class="btn btn-default">
-                           <input type="radio" id="jt2" name="job_type" value="Rework" > Rework
-                       </label>
-                   </div>
-                   <h4>Select Component</h4>
-                   <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-default active">
-                          <input type="radio" id="c1" name="component" value="GMI Cam Shaft" checked> GMI Cam Shaft
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" id="c2" name="component" value="NALT Main Shaft" > NALT Main Shaft
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" id="c3" name="component" value="GMI Main Shaft" > GMI Main Shaft
-                      </label>
-                  </div>
-                  <br>
-
-                     <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="job-button" >
-                      <p>Duration : <span id = "job-duration">00:00:00</span></p>
-                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                 </form>
-              </div>
-
-
-            <?php  endif; ?>
-
-            
-            <?php if($event_name=="precautionary_check"):
-             ?>
-             <div id="precautionary_check" class="tab-pane">
-              <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                      <h3>Precautionary Check</h3>
-                      <form class="form" id="precautionary_check-form">
-                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                     <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="precautionary_check-button" >
-                      <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
-                     
-                        </form>
-                    </div>
-
-
-            <?php  endif; ?>
-
-            <?php if($event_name=="machine_failure"): ?>
-
-                     <div id="machine_failure" class="tab-pane">
-                      <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                    <h3>Machine Failure</h3>
-                    <form class="form" id="machine_failure-form">
-                    <h4>Failed Unit</h4>
-                    <div class="btn-group" data-toggle="buttons">
-                       <label class="btn btn-default active">
-                           <input type="radio"  name="failed_unit" value="Drilling Unit" checked> Drilling Unit
-                       </label>
-                       <label class="btn btn-default">
-                           <input type="radio"  name="failed_unit" value="Milling Unit" > Milling Unit
-                       </label>
-                        <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Clamping Unit"> Clamping Unit
-                    </label>
-                   <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Feed Unit" > Feed Unit
-                   </label>
-                   <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Power Unit" > Power Unit
-                   </label>
-                   </div>
-                   <h4>Mode of failure</h4>
-                   <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-default active">
-                          <input type="radio" name="failure_mode" value="1" checked> 1
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" name="failure_mode" value="2" > 2
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" name="failure_mode" value="3" > 3
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" name="failure_mode" value="4" > 4
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" name="failure_mode" value="5" > 5
-                      </label>
-                  </div>
-                  <br>
-                    <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="machine_failure-button" >
-                     <p>Duration : <span id = "machine_failure-duration">00:00:00</span></p>
-                     <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-              </form>
-                </div>
-
-
-            <?php  endif; ?>
-
-
-
-            <?php if($event_name=="lunch_tea"): ?>
-
-
-            <div id="lunch_tea" class="tab-pane">
-             <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                      <h3>Lunch/Tea</h3>
-                      <form class="form" id="lunch_tea-form">
-                      
-                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                       
-
-                      <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="lunch_tea-button">
-                      <p>Duration : <span id = "lunch_tea-duration">00:00:00</span></p>
-                      </form>
-                    </div>
-                    <div id="precautionary_check" class="tab-pane fade">
-                     <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                      <h3>Precautionary Check</h3>
-                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                      <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="precautionary_check-button" >
-                      <p>Duration : <span id = "precautionary_check-duration">00:00:00</span></p>
-                    </div>
-                    <div id="pm" class="tab-pane fade">
-                     <img src="/Cyber_Twin/icons/<?php echo $event_name; ?>.png" width="100" height="100">
-                      <h3>Preventive Maintenance</h3>
-                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                    <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="pm-button" >
-                    <p>Duration : <span id = "pm-duration">00:00:00</span></p>
-                    </div>
-                    <div id="setup_change" class="tab-pane fade">
-                      <h3>Setup Change</h3>
-                      <form class="form" id="machine_failure-form">
-                      <h4>Old Setup</h4>
-                      <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="radio" name="old_setup" value="GMI Cam Shaft" checked> GMI Cam Shaft
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio"  name="old_setup" value="NALT Main Shaft" > NALT Main Shaft
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" name="old_setup" value="GMI Main Shaft" > GMI Main Shaft
-                        </label>
-                     </div>
-                     <h4>New Setup</h4>
-                     <div class="btn-group" data-toggle="buttons">
-                       <label class="btn btn-default active">
-                           <input type="radio"  name="new_setup" value="GMI Cam Shaft" checked> GMI Cam Shaft
-                       </label>
-                       <label class="btn btn-default">
-                           <input type="radio"  name="new_setup" value="NALT Main Shaft" > NALT Main Shaft
-                       </label>
-                       <label class="btn btn-default">
-                           <input type="radio"  name="new_setup" value="GMI Main Shaft" > GMI Main Shaft
-                       </label>
-                    </div>
-                       <img src="/Cyber_Twin/icons/start.png" width="100" height="100" id ="setup_change-button" >
-                       <p>Duration : <span id = "setup_change-duration">00:00:00</span></p>
-                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                </form>
-                  </div>
-<div>
-              <?php endif; ?>
+ ?>
 
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="js/jquery-1.12.2.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="js/bootstrap.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+           
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
            <?php
-        endif;
+     //   endif;
 
         ?>
 

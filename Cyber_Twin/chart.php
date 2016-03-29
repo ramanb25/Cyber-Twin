@@ -1,7 +1,7 @@
 <?php
  require_once('dbconfig.php');
-require_once ('../Cyber_Twin/src/jpgraph.php');
-require_once ('../Cyber_Twin/src/jpgraph_bar.php');
+//require_once ('../Cyber_Twin/src/jpgraph.php');
+//require_once ('../Cyber_Twin/src/jpgraph_bar.php');
 
 //include 'x.php';
 /**

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
- 
+  <?php include 'Plots/JobDataSimulation.php';
+        include 'navbar.php';
+  ?>
 <html>
     <head>
         <title>Simulation</title>
+          <script src="../js/jquery-1.12.2.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="../js/bootstrap.min.js"></script>
+           
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/app.js"></script>
+          <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            <script type="text/javascript">google.load('visualization', '1.0', {'packages':['corechart']});</script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
        
-        <div>
-            <input type="text" id="messageinput"/>
-        </div>
+        
         <div>
             <button type="button" onclick="openSocket();" >Open</button>
             <button type="button" onclick="send();" >Send</button>
@@ -18,13 +27,15 @@
         </div>
         <!-- Server responses get written here -->
         <div id="messages"></div>
+        <div id="chart_div"></div>
        
         <!-- Script to utilise the WebSocket -->
         <script type="text/javascript">
                        
             var webSocket;
             var messages = document.getElementById("messages");
-            openSocket();
+          var GMICamShaft_Regular = <?php echo json_encode($GMICamShaft_Regular); ?>;
+            var GMICamShaft_Regular_Endtime = <?php echo json_encode($GMICamShaft_Regular_Endtime); ?>;
             
             function getParameterByName(name, url) {
                 if (!url) url = window.location.href;
@@ -60,6 +71,14 @@
  
                 webSocket.onmessage = function(event){
                     writeResponse(event.data);
+
+
+                        if(event.data!="Connection Established"){
+                              var data=JSON.stringify(event.data);
+                              var text='{"data":"'+event.data+'"}';
+                              $('#chart_div').load('Plot.php',{data:event.data});
+                        } 
+                   // alert(JSON.stringify(event.data));
                 };
  
                 webSocket.onclose = function(event){
@@ -71,8 +90,8 @@
              * Sends the value of the text input to the server
              */
             function send(){
-                var text = document.getElementById("messageinput").value;
-                webSocket.send(text);
+               // alert(JSON.stringify(GMICamShaft_Regular));
+                webSocket.send(JSON.stringify(GMICamShaft_Regular));
             }
            
             function closeSocket(){

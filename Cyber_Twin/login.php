@@ -1,4 +1,6 @@
 <?php
+include('navbar.php');
+
 session_start();
  if (isset($_SESSION['mysesi']) && isset($_SESSION['mytype'])){
  $operator=0;
@@ -17,6 +19,7 @@ session_destroy();
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <br><br>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,11 +65,11 @@ if(isset($login)){
     if($type==$manager){
       $_SESSION['mysesi']=$name;
       $_SESSION['mytype']=$manager;
-      echo "<script>window.location.assign('graph.php')</script>";
+      echo "<script>window.location.assign('manager/index.php')</script>";
     } else if($type==$operator){
       $_SESSION['mysesi']=$name;
       $_SESSION['mytype']=$operator;
-      echo "<script>window.location.assign('index.php')</script>";
+      echo "<script>window.location.assign('operator/index.php')</script>";
     } else{
 ?>
 <div class="alert alert-warning alert-dismissible" role="alert">

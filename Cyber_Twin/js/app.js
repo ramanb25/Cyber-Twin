@@ -34,9 +34,9 @@ function Event(id){
    {  started = true;
      // alert(getParameterByName('start'));
       currentSpan = context.duration_span;
-       context.button.attr('src', '/Cyber_Twin/icons/stop.png');
-      $("#duration").fadeOut();
+      context.button.attr('src', '/Cyber_Twin/icons/stop.png');
       starttime=getParameterByName('starttime');
+      currentSpan.text("Started on "+starttime);
     }
 
 
@@ -50,8 +50,6 @@ function Event(id){
 
          var data = {table: context.table,
               start_time: starttime,
-              end_time: "NULL",
-              duration: "NULL",
               extra: JSON.stringify(context.form.serializeArray())
       };
 
@@ -82,8 +80,6 @@ function Event(id){
       //alert(starttime);
       var data = {table: context.table,
               start_time: starttime,
-              end_time: new Date().toLocaleString(),
-              duration: currentSpan.text(),
               extra: JSON.stringify(context.form.serializeArray())
       };
 
@@ -97,8 +93,8 @@ function Event(id){
         success: function(data) {
           started = false;
           context.button.prop('disabled',false);
-         context.button.attr('src', '/Cyber_Twin/icons/start.png');
-          currentSpan.text("00:00:00");
+          context.button.attr('src', '/Cyber_Twin/icons/start.png');
+          currentSpan.text("Duration: 00:00:00");
           seconds = minutes = hours = 0;
           alert("Event submitted successfully");
         }
@@ -119,7 +115,7 @@ function Event(id){
               hours++;
           }
       }
-      currentSpan.text((hours ? (hours > 9 ? hours : "0" + hours) : "00")
+      currentSpan.text("Duration: "+(hours ? (hours > 9 ? hours : "0" + hours) : "00")
       + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
       + ":" + (seconds > 9 ? seconds : "0" + seconds));
 

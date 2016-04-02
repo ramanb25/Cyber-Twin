@@ -43,7 +43,7 @@ include('navbar.php')
               <input type="hidden" class="btn btn-info" name="lvl" value="<?php echo $key;?>">
               <input type="hidden" class="btn btn-info" name="event_name" value="<?php echo $value[0];?>">
               <input type="hidden" class="btn btn-info" name="timeline" value="<?php echo $value[0];?>">
-              <input type="image" src="/Cyber_Twin/icons/<?php echo $value[0]; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
+              <input type="image" src="../icons/<?php echo $value[0]; ?>.png" alt="Submit" width="150" height="150" value="<?php echo $value[0];?>">
               <h3><?php echo $value[1];?></h3>
               </form>
               </div>

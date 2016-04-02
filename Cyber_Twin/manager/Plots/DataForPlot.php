@@ -7,15 +7,7 @@
 
 
 
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('events.db');
-    }
-}
-
-$db = new MyDB();
+include('db.php');
 $result = $db->query('SELECT duration,failed_unit FROM machine_failure');
 
 function sum_the_time($time1, $time2) {

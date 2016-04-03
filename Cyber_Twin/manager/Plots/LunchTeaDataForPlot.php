@@ -9,7 +9,7 @@
 include('db.php');
 
 //$db = new MyDB();
-$result = $db->query('SELECT end_time,duration FROM lunch_tea');
+$result = $db->query('SELECT end_time,duration FROM lunch_tea where end_time!="NULL"');
 
 function minutes($time) {
   $minutes = 0;

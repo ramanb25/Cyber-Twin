@@ -8,7 +8,7 @@
 
 
 include('db.php');
-$result = $db->query('SELECT end_time,duration FROM pm');
+$result = $db->query('SELECT end_time,duration FROM pm  where end_time!="NULL"');
 
 function hours($time) {
     return $time/3600;

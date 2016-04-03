@@ -8,7 +8,7 @@
 
 
 include('db.php');
-$result = $db->query('SELECT end_time,duration,job_type, component FROM job');
+$result = $db->query('SELECT end_time,duration,job_type, component FROM job  where end_time!="NULL"');
 
 function minutes($time) {
   //$minutes = 0;

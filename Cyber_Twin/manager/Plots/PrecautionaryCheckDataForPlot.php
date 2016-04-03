@@ -8,7 +8,7 @@
 
 
 include("db.php");
-$result = $db->query('SELECT end_time,duration FROM precautionary_check');
+$result = $db->query('SELECT end_time,duration FROM precautionary_check  where end_time!="NULL"');
 
 function minutes($time) {
     return $time/60;

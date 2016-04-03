@@ -218,6 +218,62 @@ class Manager
 
     }
 
+    public function register_manager($user,$pass){
+      include 'db.php';
+      
+        if(!empty($user)) //checking the 'user' name which is from Sign-Up.html, is it empty or have some text
+          { 
+                      $sql="SELECT * FROM login WHERE username = '".$user."'";
+            //echo $sql;
+          $query = $db->query($sql);// or die(mysql_error()); 
+          //..echo 'SELECT * FROM login WHERE username = '.$_POST[user;].''";
+          if(!$row = $query->fetch_row()) {
+            $userName = $user;
+          // $email = $_POST['email'];
+          $password = md5($pass);
+            // $type=$_POST['type'];
+            $query = "INSERT INTO login (name_login,username,password,type_login) VALUES ('$userName','$userName','$password','1')";
+           $data = $db->query($query);//or die(mysql_error()); 
+           if($data) { return "YOUR REGISTRATION IS COMPLETED..."; } 
+          
+          } 
+          else {
+
+           return "SORRY...YOU ARE ALREADY REGISTERED USER..."; 
+          } 
+        }
+
+      } 
+
+      public function register_operator($user,$pass){
+      include 'db.php';
+      
+        if(!empty($user)) //checking the 'user' name which is from Sign-Up.html, is it empty or have some text
+          { 
+                      $sql="SELECT * FROM login WHERE username = '".$user."'";
+            //echo $sql;
+          $query = $db->query($sql);// or die(mysql_error()); 
+          //..echo 'SELECT * FROM login WHERE username = '.$_POST[user;].''";
+          if(!$row = $query->fetch_row()) {
+            $userName = $user;
+          // $email = $_POST['email'];
+          $password = md5($pass);
+            // $type=$_POST['type'];
+            $query = "INSERT INTO login (name_login,username,password,type_login) VALUES ('$userName','$userName','$password','0')";
+           $data = $db->query($query);//or die(mysql_error()); 
+           if($data) { return "YOUR REGISTRATION IS COMPLETED..."; } 
+          
+          } 
+          else {
+
+           return "SORRY...YOU ARE ALREADY REGISTERED USER..."; 
+          } 
+        }
+
+      } 
+
+  
+
 
 }
 

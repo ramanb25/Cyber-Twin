@@ -2,6 +2,7 @@
 		
 		include 'class_manager.php';
 		$manager= new Manager();
+		$manager->is_manager_logged_in();
 		if(isset($_GET['event'])){
 				include('navbar.php');
 				$event=$_GET['event'];

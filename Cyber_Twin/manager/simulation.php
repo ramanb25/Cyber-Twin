@@ -1,6 +1,8 @@
 <!DOCTYPE html>
   <?php include 'Plots/JobDataSimulation.php';
         include 'navbar.php';
+        $manager= new Manager();
+		$manager->is_manager_logged_in();
   ?>
 <html>
     <head>
@@ -54,7 +56,7 @@
                     return;
                 }
                 // Create a new instance of the websocket
-                webSocket = new WebSocket("ws://localhost:8080/Simulation/echo");
+                webSocket = new WebSocket("ws://192.168.1.33:8080/Simulation/echo");
                  
                 /**
                  * Binds functions to the listeners for the websocket.

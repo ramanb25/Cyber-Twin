@@ -45,7 +45,7 @@ require_once('dbconfig.php');
 include('db.php');
 if(isset($_POST['password'])    &&    isset($_POST['username'])){
 $username=$_POST['username'];
-$password=$_POST['password'];
+$password=md5($_POST['password']);
 $login=$_POST['login'];
 if(isset($login)){
   $mysqli  = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);

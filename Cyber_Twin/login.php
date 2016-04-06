@@ -6,12 +6,12 @@ session_start();
  $operator=0;
 if ($_SESSION['mytype']==$operator)
 {
-  echo "<script>window.location.assign('index.php')</script>";
+  echo "<script>window.location.assign('operator/index.php')</script>";
 }
  $manager=1;
 if (!$_SESSION['mytype']==$manager)
 {//echo $_SESSION['mytype'];
-  echo "<script>window.location.assign('graph.php')</script>";
+  echo "<script>window.location.assign('manager/index.php')</script>";
 }}
 session_destroy();
 ?>
@@ -23,7 +23,7 @@ session_destroy();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Session</title>
+    <title>Login</title>
  
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -65,10 +65,12 @@ if(isset($login)){
     if($type==$manager){
       $_SESSION['mysesi']=$name;
       $_SESSION['mytype']=$manager;
+     
       echo "<script>window.location.assign('manager/index.php')</script>";
     } else if($type==$operator){
       $_SESSION['mysesi']=$name;
       $_SESSION['mytype']=$operator;
+     // header('Location: login.php');
       echo "<script>window.location.assign('operator/index.php')</script>";
     } else{
 ?>
@@ -92,7 +94,7 @@ if(isset($login)){
     <div class="panel panel-default">
       <div class="panel-body">
      
-    <h2>Login Session</h2>
+    <h2>Login</h2>
     <form role="form" method="post">
       <div class="form-group">
  <label for="username">Username</label>

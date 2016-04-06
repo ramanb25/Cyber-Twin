@@ -58,11 +58,11 @@ class Operator
 			{
 			    if (!$_SESSION['mytype']==$operator) {
 			        # code...
-			         echo "<script>window.location.assign('login.php')</script>";
+			         echo "<script>window.location.assign('../login.php')</script>";
 			    }
 			}
 			else
-			     echo "<script>window.location.assign('login.php')</script>";
+			     echo "<script>window.location.assign('../login.php')</script>";
 				}
 	
 

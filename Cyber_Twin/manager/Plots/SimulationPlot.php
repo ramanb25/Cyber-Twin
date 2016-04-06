@@ -4,7 +4,7 @@
       google.load('visualization', '1.0', {'packages':['corechart']});
       // Set a callback to run when the Google Visualization API is loaded.
     //  google.setOnLoadCallback(drawChart);
-      var data = <?php echo $simulation_Data; ?>;
+      var data = "<?php echo $simulation_Data; ?>";
   //alert(data["2016-03-18 14:44:13"]);	
 drawChart();
 function drawChart() {

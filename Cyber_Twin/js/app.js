@@ -46,7 +46,7 @@ function Event(id){
       currentSpan = context.duration_span;
       started = true;
 
-      context.button.attr('src', '../icons/stop.png');
+      context.button.attr('src', '/Cyber_Twin/icons/stop.png');
 
          var data = {table: context.table,
               start_time: starttime,
@@ -93,7 +93,7 @@ function Event(id){
         success: function(data) {
           started = false;
           context.button.prop('disabled',false);
-          context.button.attr('src', '../icons/start.png');
+          context.button.attr('src', '/Cyber_Twin/icons/start.png');
           currentSpan.text("Duration: 00:00:00");
           seconds = minutes = hours = 0;
           alert("Event submitted successfully");

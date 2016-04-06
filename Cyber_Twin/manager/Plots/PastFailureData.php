@@ -3,7 +3,10 @@
     include('../db.php');          
           $timeline=1;
 
-
+          $feed=array();
+          $clamping=array();
+          $drilling=array();
+          $milling=array();
           $group="MONTH";
           $i=0;
 

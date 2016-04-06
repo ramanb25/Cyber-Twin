@@ -1,18 +1,22 @@
 <!DOCTYPE html>
   <?php include 'Plots/JobDataSimulation.php';
         include 'navbar.php';
+        include 'class_manager.php';
+
         $manager= new Manager();
 		$manager->is_manager_logged_in();
   ?>
 <html>
     <head>
         <title>Simulation</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
           <script src="../js/jquery-1.12.2.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="../js/bootstrap.min.js"></script>
            
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
     <script src="../js/app.js"></script>
           <script type="text/javascript" src="https://www.google.com/jsapi"></script>
             <script type="text/javascript">google.load('visualization', '1.0', {'packages':['corechart']});</script>
@@ -30,6 +34,11 @@
         <!-- Server responses get written here -->
         <div id="messages"></div>
         <div id="chart_div"></div>
+
+<div id="chart_div2"></div>
+<div id="chart_div3"></div>
+        <div id="barchart_values" style="width: 900px; height: 300px;"></div>
+
        
         <!-- Script to utilise the WebSocket -->
         <script type="text/javascript">
@@ -56,7 +65,7 @@
                     return;
                 }
                 // Create a new instance of the websocket
-                webSocket = new WebSocket("ws://192.168.1.33:8080/Simulation/echo");
+                webSocket = new WebSocket("ws://localhost:8080/Simulation/echo");
                  
                 /**
                  * Binds functions to the listeners for the websocket.
@@ -72,11 +81,12 @@
                 };
  
                 webSocket.onmessage = function(event){
-                    writeResponse(event.data);
+                    //writeResponse(event.data);
 
 
                         if(event.data!="Connection Established"){
                               var data=JSON.stringify(event.data);
+
                               var text='{"data":"'+event.data+'"}';
                               $('#chart_div').load('Plot.php',{data:event.data});
                         } 

@@ -10,17 +10,22 @@ $going_on=0;
           $going_on=1;
           if(!strcmp($row[2],"NULL")):?>
                       
-                      <div  class="col-sm-4 col-lg-4 col-md-4 img-hover">
+                     
                       <form name='fr' method="POST" action="event.php?started=1&starttime=<?php echo $key;?>">
                       <input type="hidden" value="<?php echo $row[0];?>" name="event_name"></input>
-                      <input type="image" src="../icons/<?php echo $row[0];?>.png" alt="Submit" width="150" height="150" value="value">
-                      <h4><?php echo "ONGOING";?></h4>
                       </form>
-                      </div>
+                     
 
           <?php endif;}?>
 
-    
+     <script src="../js/jquery-1.12.2.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+           
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/app.js"></script>
+
             <script type='text/javascript'>
             var condition=<?php echo $going_on ?>;
             if(condition)
@@ -191,6 +196,7 @@ $going_on=0;
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/app.js"></script>
+    
            <?php
      //   endif;
 

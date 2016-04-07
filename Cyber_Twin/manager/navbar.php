@@ -1,7 +1,5 @@
- 
-<!DOCTYPE html>
-<html>
-<head>
+
+<html lang="en">
 
 <head>
 
@@ -12,35 +10,30 @@
     <meta name="author" content="">
 
     <title>Cyber Twin</title>
-     <script src="../js/jquery-1.12.2.js"></script>
-     <script src="../js/app.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-  
+    <link rel="stylesheet" type="text/css" href="../css/all.min.css">
 
     <!-- Custom CSS -->
-      <link href="../css/app.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-     <script src="../js/jquery-1.12.2.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="../js/bootstrap.min.js"></script>
-           
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/app.js"></script>
-    <link href="../css/app.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <link href="../css/heroic-features.css" rel="stylesheet">
+     
+     
+     
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="../css/heroic-features.css" rel="stylesheet">
+
+</head>
+
 <body>
 
- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -57,11 +50,18 @@
                 <ul class="nav navbar-nav">
                   
                 </ul>
-                <form name="logout" action="../logout.php" class="navbar-form navbar-right"  method="post">
-                        <button type="submit" class="btn btn-primary">Logout</button>
+
+                 
+                   <form name="login" action="register.php" class="navbar-form navbar-right"  method="post">
+                        
+
+                        <button type="submit" class="btn btn-primary">Register</button>
                    </form>
+                    <form name="login" action="../logout.php" class="navbar-form navbar-right"  method="post">
+                        
 
-
+                        <button type="submit" class="btn btn-primary">Log out</button>
+                   </form>
 
 
             </div>

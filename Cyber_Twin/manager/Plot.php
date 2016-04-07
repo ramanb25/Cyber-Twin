@@ -3,17 +3,23 @@
 <html>
   <head>
     <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  
+   
+      <script src="../js/jquery-1.12.2.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+           
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
 
 <?php
-		
+		include 'navbar.php';
 		include 'class_manager.php';
 		$manager= new Manager();
 		$manager->is_manager_logged_in();
 		if(isset($_GET['event'])){
-				include('navbar.php');
+				
 				$event=$_GET['event'];
 		        $manager->show($event);
 		}

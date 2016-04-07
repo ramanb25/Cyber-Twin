@@ -76,7 +76,7 @@ if(isset($login)){
 ?>
 <div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-  <strong>Maaf!</strong> Tidak sesuai dengan type user.
+  <strong>Maaf!</strong>Wrong type user.
 </div>
 <?php
     }
@@ -84,7 +84,7 @@ if(isset($login)){
 ?>
 <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-  <strong>Warning!</strong> This username or password not same with database.
+  <strong></strong> The username or password is incorrect.
 </div>
 <?php
   }
@@ -93,6 +93,7 @@ if(isset($login)){
    
     <div class="panel panel-default">
       <div class="panel-body">
+      
      
     <h2>Login</h2>
     <form role="form" method="post">

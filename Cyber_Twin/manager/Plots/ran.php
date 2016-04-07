@@ -24,6 +24,8 @@
 		<meta name="fragment" content="!">
 
 <link rel="stylesheet" type="text/css" href="../css/all.min.css">
+
+<link rel="stylesheet" type="text/css" href="../css/app.css">
 		
 
 		
@@ -32,9 +34,8 @@
 	<style type="text/css"></style></head>
 
 
-
-<div id="fullView" class="full-view show"><div class="widget txn full-size"><header>History</header>  <ul><div class="txn-date">February, 2016
-</div> 
+<br><br>
+<div id="fullView"  class="full-view show"><div class="widget txn full-size"><header id="button">History</header>  <ul>
 <?php
 include('db.php');
 

@@ -1,10 +1,20 @@
-<?php
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="../js/jquery-1.12.2.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="../js/bootstrap.min.js"></script>
+           
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/app.js"></script>
+      <script src="../js/jquery-1.12.2.js"></script>
+            <?php
 session_start();
 include('class_operator.php');
         $operator= new Operator();
   $operator->is_operator_login();
 
 $going_on=0;
+
       $items=$operator->ongoing_events();
         foreach ($items as $key => $row) {
           $going_on=1;
@@ -18,12 +28,7 @@ $going_on=0;
 
           <?php endif;}?>
 
-     <script src="../js/jquery-1.12.2.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-           
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
+
     <script src="../js/app.js"></script>
 
             <script type='text/javascript'>

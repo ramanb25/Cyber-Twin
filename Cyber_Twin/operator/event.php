@@ -1,8 +1,35 @@
-<?php
+<script src="../js/jquery-1.12.2.js"></script><?php
 session_start();
   include('class_operator.php');
   $operator= new Operator();
   $operator->is_operator_login();
+  if(!isset($_POST["event_name"])):
+  $going_on=0;
+      $items=$operator->ongoing_events();
+        foreach ($items as $key => $row) {
+          $going_on=1;
+          if(!strcmp($row[2],"NULL")):?>
+                      
+                     
+                      <form name='fr' method="POST" action="event.php?started=1&starttime=<?php echo $key;?>">
+                      <input type="hidden" value="<?php echo $row[0];?>" name="event_name"></input>
+                      </form>
+                     
+
+          <?php endif;}
+
+          ?>
+
+
+    <script src="../js/app.js"></script>
+
+            <script type='text/javascript'>
+            var condition=<?php echo $going_on ?>;
+            if(condition)
+            document.fr.submit();
+            </script>
+
+          <?php endif;
 //echo $_SESSION['mytype'];
         include('navbar.php');
         //require_once('Database.php');
@@ -27,7 +54,7 @@ session_start();
              <?php if($event_name=="production_stoppage"): ?>
 
                       <div id="production_stoppage" >
-                                   <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                                   <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                                   <h3>Production Stoppage</h3>
                                   <form class="form" id="production_stoppage-form">
                                   <h4>Cause</h4>
@@ -55,7 +82,7 @@ session_start();
                                      </label>
                                  </div>
                                  <br>
-                                  <img src="../icons/start.png" width="100" height="100" id ="production_stoppage-button">
+                                  <img src="../icons/start.png" width="300" height="300" id ="production_stoppage-button">
                                   <p id="duration"> <span id = "production_stoppage-duration">Duration: 00:00:00</span></p>
                                 <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                                 </form>
@@ -70,13 +97,13 @@ session_start();
 
 
              <div id="operator_unavailability" class="tab-pane">
-              <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+              <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                     <h3>Operator Unavailability</h3>
                     <form class="form" id="operator_unavailability-form">
                     <h4>Cause</h4>
-                    <div class="btn-group" data-toggle="buttons">
+                    <div class="btn-group" data-toggle="buttons" >
                        <label class="btn btn-default active">
-                           <input type="radio"  name="cause" value="Busy with other machine" checked> Busy with other machine
+                           <input type="radio"  name="cause" value="Busy with other machine"  checked> <img src="../icons/<?php echo $event_name; ?>.png" width="200" height="200">
                        </label>
                        <label class="btn btn-default">
                            <input type="radio"  name="cause" value="Busy with official work" > Busy with official work
@@ -91,7 +118,7 @@ session_start();
 
 
                    <br>
-                   <img src="../icons/start.png" width="100" height="100" id ="operator_unavailability-button" >
+                   <img src="../icons/start.png" width="300" height="300" id ="operator_unavailability-button" >
                     <p id="duration"> <span id = "operator_unavailability-duration">Duration: 00:00:00</span></p>
                     <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                   </form>
@@ -102,7 +129,7 @@ session_start();
              <?php if($event_name=="job"): ?>
 
                       <div id="job" class="tab-pane">
-                       <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                       <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                   <h3>Job</h3>
                     <form class="form" id="job-form">
                     <h4>Select Job Type</h4>
@@ -128,7 +155,7 @@ session_start();
                   </div>
                   <br>
 
-                     <img src="../icons/start.png" width="100" height="100" id ="job-button" >
+                     <img src="../icons/start.png" width="300" height="300" id ="job-button" >
                       <p id="duration"> <span id = "job-duration">Duration: 00:00:00</span></p>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                  </form>
@@ -141,11 +168,11 @@ session_start();
             <?php if($event_name=="precautionary_check"):
              ?>
              <div id="precautionary_check" class="tab-pane">
-              <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+              <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                       <h3>Precautionary Check</h3>
                       <form class="form" id="precautionary_check-form">
                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                     <img src="../icons/start.png" width="100" height="100" id ="precautionary_check-button" >
+                     <img src="../icons/start.png" width="300" height="300" id ="precautionary_check-button" >
                       <p id="duration"> <span id = "precautionary_check-duration">Duration: 00:00:00</span></p>
                      
                         </form>
@@ -157,7 +184,7 @@ session_start();
             <?php if($event_name=="machine_failure"): ?>
 
                      <div id="machine_failure" class="tab-pane">
-                      <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                      <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                     <h3>Machine Failure</h3>
                     <form class="form" id="machine_failure-form">
                     <h4>Failed Unit</h4>
@@ -197,7 +224,7 @@ session_start();
                       </label>
                   </div>
                   <br>
-                    <img src="../icons/start.png" width="100" height="100" id ="machine_failure-button" >
+                    <img src="../icons/start.png" width="300" height="300" id ="machine_failure-button" >
                      <p id="duration"> <span id = "machine_failure-duration">Duration: 00:00:00</span></p>
                      <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
               </form>
@@ -212,29 +239,29 @@ session_start();
 
 
             <div id="lunch_tea" class="tab-pane">
-             <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+             <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                       <h3>Lunch/Tea</h3>
                       <form class="form" id="lunch_tea-form">
                       
                         <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                        
 
-                      <img src="../icons/start.png" width="100" height="100" id ="lunch_tea-button">
+                      <img src="../icons/start.png" width="300" height="300" id ="lunch_tea-button">
                       <p id="duration"> <span id = "lunch_tea-duration">Duration: 00:00:00</span></p>
                       </form>
                     </div>
                     <div id="precautionary_check" class="tab-pane fade">
-                     <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                     <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                       <h3>Precautionary Check</h3>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                      <img src="../icons/start.png" width="100" height="100" id ="precautionary_check-button" >
+                      <img src="../icons/start.png" width="300" height="300" id ="precautionary_check-button" >
                       <p id="duration"> <span id = "precautionary_check-duration">Duration: 00:00:00</span></p>
                     </div>
                     <div id="pm" class="tab-pane fade">
-                     <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                     <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                       <h3>Preventive Maintenance</h3>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                    <img src="../icons/start.png" width="100" height="100" id ="pm-button" >
+                    <img src="../icons/start.png" width="300" height="300" id ="pm-button" >
                     <p id="duration"> <span id = "pm-duration">Duration: 00:00:00</span></p>
                     </div>
                     <div id="setup_change" class="tab-pane fade">
@@ -264,7 +291,7 @@ session_start();
                            <input type="radio"  name="new_setup" value="GMI Main Shaft" > GMI Main Shaft
                        </label>
                     </div>
-                       <img src="../icons/start.png" width="100" height="100" id ="setup_change-button" >
+                       <img src="../icons/start.png" width="300" height="300" id ="setup_change-button" >
                        <p id="duration"> <span id = "setup_change-duration">Duration: 00:00:00</span></p>
                        <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
                 </form>
@@ -277,10 +304,10 @@ session_start();
 
               <?php if($event_name=="pm"): ?>
                <div id="pm" class="tab-pane fade">
-                     <img src="../icons/<?php echo $event_name; ?>.png" width="100" height="100">
+                     <img src="../icons/<?php echo $event_name; ?>.png" width="300" height="300">
                       <h3>Preventive Maintenance</h3>
                       <input type="hidden" name="Name" value="<?php echo $_SESSION['mysesi']; ?>">
-                    <img src="../icons/start.png" width="100" height="100" id ="pm-button" >
+                    <img src="../icons/start.png" width="300" height="300" id ="pm-button" >
                     <p id="duration"> <span id = "pm-duration">Duration: 00:00:00</span></p>
                     </div>
                   <?php endif; ?>

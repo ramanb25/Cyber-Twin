@@ -68,7 +68,7 @@ class Operator
 
 	function ongoing_events(){
 		include('db.php');
-        $query="select * from job where end_time = 'NULL';";
+        $query="select * from job where end_time = 'NULL'  and username='".$_SESSION['mysesi']."';";
         $items=array();
         $table=array();
         //array_push($table, 'JOB');

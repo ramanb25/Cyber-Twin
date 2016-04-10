@@ -50,9 +50,7 @@
                 <ul class="nav navbar-nav">
                   
                 </ul>
-                <form name="logout" action="logout.php" class="navbar-form navbar-right"  method="post">
-                        <button type="submit" class="btn btn-primary">Logout</button>
-                   </form>
+                
 
 
 

@@ -1,22 +1,8 @@
 
-
 <head>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<title>Logs</title>		
 
-		<title>Today</title>
-		
+			
 		
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -35,13 +21,56 @@
 
 
 <br><br>
-<div id="fullView"  class="full-view show"><div class="widget txn full-size"><header id="button">History</header>  <ul>
-<?php
-include('db.php');
+<div id="fullView"  class="full-view show"><br><form method="GET" id="filter1" action="<?=$_SERVER['PHP_SELF'];?>">
+	<input type="hidden" name="event" value="ran"></input> 
+	  	<select name="table" >
+  <option value="job">JOB</option>
+  <option value="operator_unavailability">Operator Unavailability</option>
+  <option value="machine_failure">Machine Failure</option>
+  <option value="production_stoppage">Production Stoppage</option>
+  <option value="lunch_tea">Lunch/Tea</option>
+  <option value="precautionary_check">Preacautionary Check</option>
+</select>
+	  
+	 <input id="button" type="submit" name="submit" value="Filter">
+	 
 
-$query="select * from job;";
-$items=array();
-$table=array();
+	 </form><div class="widget txn full-size"><header id="button">History</header>  <ul>
+<?php
+include('db.php')
+?>
+	 <?php
+
+				if(isset($_GET['table'])){
+
+					$filter_table=$_GET['table'];
+					$query="select * from $filter_table;";
+					//echo $query;
+								$items=array();
+								$table=array();
+//array_push($table, 'JOB');
+							    $result=$db->query($query);
+							    //echo $query;
+							   // $items= array();
+							    $count=0;
+							      while ($row = $result->fetch_row()) {
+							      $count++;
+							     // array_push( $row,"JOB")
+							  $items[$row[0]]=$row =  array_merge( array( 0 => $filter_table ),(array)$row );
+							   //  echo "JOB GOING ON \n";
+							      //echo "<br>";
+							  //    echo $row[4];
+							    //  echo "\nstarted on ".$row[0];
+							      //echo "<br>";
+
+							  	}
+
+				}
+				else
+								{
+								$query="select * from job;";
+								$items=array();
+								$table=array();
 //array_push($table, 'JOB');
 							    $result=$db->query($query);
 							    //echo $query;
@@ -150,7 +179,7 @@ $table=array();
 
 
 							  	}
-
+					}
 krsort($items);
 foreach ($items as $key => $row) {
 

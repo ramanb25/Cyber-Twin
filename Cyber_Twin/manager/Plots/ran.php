@@ -21,9 +21,9 @@
 
 
 <br><br>
-<div id="fullView"  class="full-view show"><br><form method="GET" id="filter1" action="<?=$_SERVER['PHP_SELF'];?>">
+<div id="fullView"  class="full-view show"><br><form method="GET"  action="<?=$_SERVER['PHP_SELF'];?>">
 	<input type="hidden" name="event" value="ran"></input> 
-	  	<select name="table" >
+	  	<select name="table"  id="sel">
   <option value="job">JOB</option>
   <option value="operator_unavailability">Operator Unavailability</option>
   <option value="machine_failure">Machine Failure</option>
@@ -35,14 +35,22 @@
 	 <input id="button" type="submit" name="submit" value="Filter">
 	 
 
-	 </form><div class="widget txn full-size"><header id="button">History</header>  <ul>
+	 </form>
+
+	 <div class="widget txn full-size"><header id="button">History</header>  <ul>
 <?php
 include('db.php')
 ?>
 	 <?php
 
 				if(isset($_GET['table'])){
+					?>
 
+					<script type="text/javascript">
+	 document.getElementById('sel').value =<?php echo $_GET['table']?>;​​​​​​​​​
+
+</script>
+					<?php
 					$filter_table=$_GET['table'];
 					$query="select * from $filter_table;";
 					//echo $query;

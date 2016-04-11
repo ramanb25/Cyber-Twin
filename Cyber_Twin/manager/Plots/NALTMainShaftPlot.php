@@ -1,7 +1,6 @@
 <?php include 'JobDataForPlot.php';?>
-<!DOCTYPE html>
-<html>
-  <head>
+
+  <div id="chart_div"></div>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -38,18 +37,11 @@ function drawChart() {
 
         // Set chart options
         var options = {'title':'Cycle Time for NALT Main Shaft',
-                       'width':1200,
-                       'height':600};
+                       };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
     </script>
-  </head>
-
-  <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
-  </body>
-</html>
+ 

@@ -37,8 +37,7 @@ function drawChart() {
 
         // Set chart options
         var options = {'title':'Cycle Time of GMI Cam Shaft',
-                       'width':1200,
-                       'height':600};
+                       };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

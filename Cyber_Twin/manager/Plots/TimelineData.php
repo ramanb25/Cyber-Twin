@@ -12,7 +12,7 @@
                 if(strcmp($row[1],"NULL"))
                   array_push($items, $row[1]); //end time
                 else{
-                  echo $row[1];
+                  //echo $row[1];
                   $timezone=new DateTimeZone("ASIA/KOLKATA");
                   $now = new DateTime();
                   $now->setTimezone($timezone );

@@ -14,26 +14,36 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
 
 <?php
-		include 'navbar.php';
-		include 'class_manager.php';
-		$manager= new Manager();
-		$manager->is_manager_logged_in();
-		if(isset($_GET['event'])){
-				
-				$event=$_GET['event'];
-		        $manager->show($event);
-		}
+    include 'navbar.php';
+    include 'class_manager.php';
+    $manager= new Manager();
+    $manager->is_manager_logged_in();
+    if(isset($_GET['event'])){
+        ?><form method="GET" id="filter1" action="<?=$_SERVER['PHP_SELF'];?>">
+   
+      <select name="event" >
+  <option value="GMICamShaftPlot">GMI Cam shaftPlot</option>
+  <option value="LunchTeaPlot">Lunch Time Daywise</option>
+  <option value="NALTMainShaftPlot">NALTMainShaftPlot</option>
+  
+</select> <input id="button" type="submit" name="submit" value="Filter">
+   
 
-		 
-		 	//foreach ($_GET as $key=>$value) {
-    		//	echo $key;
-    		//	echo "<br>";
-    			//echo $value;
+   </form><?php
+        $event=$_GET['event'];
+            $manager->show($event);
+    }
 
-		 	//$data=$_GET['data'];
-		else if(isset($_POST['data'])){
-			//echo htmlentities( $_POST['data']);
-			$xml = simplexml_load_string($_POST['data']);
+     
+      //foreach ($_GET as $key=>$value) {
+        //  echo $key;
+        //  echo "<br>";
+          //echo $value;
+
+      //$data=$_GET['data'];
+    else if(isset($_POST['data'])){
+      //echo htmlentities( $_POST['data']);
+      $xml = simplexml_load_string($_POST['data']);
 
 //print_r($xml);
 
@@ -66,13 +76,13 @@ $i=0;
    array_push($comp_FC33,$value[0]);
     }
 foreach ($comp_FC21 as $key => $value) {
-	# code...
-	//echo $value;
+  # code...
+  //echo $value;
 }
 //echo json_encode($comp_FC21);
 $i=0;
     //echo $comp_FC21;
-  			?>
+        ?>
 
 
  
@@ -126,7 +136,7 @@ $i=0;
 
 
 
-              					
+                        
            
              
 
@@ -241,11 +251,11 @@ $i=0;
 
 
 
-  			<?php
+        <?php
 }
-		 	//$manager->view_predictions($_POST['data']);		 	
-		 //}
-		 //print_r($_GET);
+      //$manager->view_predictions($_POST['data']);     
+     //}
+     //print_r($_GET);
 
 
 ?>

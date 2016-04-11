@@ -21,7 +21,7 @@
     if(isset($_GET['event'])){
         ?><form method="GET" id="filter1" action="<?=$_SERVER['PHP_SELF'];?>">
    
-      <select name="event" >
+      <select name="event" id="state">
   <option value="GMICamShaftPlot">GMI Cam shaftPlot</option>
   <option value="LunchTeaPlot">Lunch Time Daywise</option>
   <option value="NALTMainShaftPlot">NALTMainShaftPlot</option>
@@ -29,7 +29,14 @@
 </select> <input id="button" type="submit" name="submit" value="Filter">
    
 
-   </form><?php
+   </form>
+
+<script type="text/javascript">
+  
+  $('#state').val('<?php echo $_GET['event'];?>').change();
+</script>
+
+   <?php
         $event=$_GET['event'];
             $manager->show($event);
     }

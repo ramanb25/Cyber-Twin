@@ -54,9 +54,18 @@ include('db.php')
 							   // $items= array();
 							    $count=0;
 							      while ($row = $result->fetch_row()) {
+
+							      	if($filter_table==="job")$show="JOB";
+  if($filter_table==="operator_unavailability")$show="OPERATOR UNAVAILABLE";
+  if($filter_table==="machine_failure")$show="Machine Failure";
+  if($filter_table==="production_stoppage")$show="Production Stoppage";//</option>
+  if($filter_table==="lunch_tea")$show="LunchTea";//</option>
+  if($filter_table==="precautionary_check")$show="Precautionary Check";//</option>
+
+
 							      $count++;
 							     // array_push( $row,"JOB")
-							  $items[$row[0]]=$row =  array_merge( array( 0 => $filter_table ),(array)$row );
+							  $items[$row[0]]=$row =  array_merge( array( 0 => $show ),(array)$row );
 							   //  echo "JOB GOING ON \n";
 							      //echo "<br>";
 							  //    echo $row[4];

@@ -8,10 +8,14 @@
 
 
 		if(isset($_POST['submit'])) { 
+			
 			if($_POST['pass']==$_POST['cpass']){
-			if($_POST['type']==1){//echo "e";
+				
+				
+			if($_POST['type']==1){//echo "e";echo "e";
+				
 			echo $manager->register_manager($_POST['user'],$_POST['pass']);}
-			else echo $manager->register_operator($_POST['user'],$_POST['pass']);}
+			else {echo $manager->register_operator($_POST['user'],$_POST['pass']);}}
 			else echo "Passwords do not match";
 
 		 }
@@ -34,21 +38,21 @@
 
 
 ?>
-	<!DOCTYPE HTML> <html> <head> <title>Sign-Up</title> </head> <body id="body-color"> <div id="Sign-Up"> <fieldset style="width:30%"><legend>Registration Form</legend> <table border="0"> <tr> 
+	<!DOCTYPE HTML> <html> <head> <title>Sign-Up</title> </head> <body id="body-color"> <div id="Sign-Up"> <fieldset><legend>Registration Form</legend> 
 	 
 
 	<form method="POST" action="register.php"> 
-	  <tr> <td>UserName</td><td> <input type="text" name="user"></td> </tr>
-	   <tr> <td>Password</td><td> <input type="password" name="pass"></td> </tr> 
-	   <tr> <td>Confirm Password </td><td><input type="password" name="cpass"></td> </tr>
+	  UserName <input type="text" name="user">
+	  Password<input type="password" name="pass"> 
+	  Confirm Password<input type="password" name="cpass">
 <select name="type">
   <option value="0">Operator</option>
   <option value="1">Manager</option>
 </select>
 	  
-	    <tr> <td><input id="button" type="submit" name="submit" value="Register"></td> </tr>
+	   <input id="button" type="submit" name="submit" value="Register">
 
 
 
-	 </form> </table> </fieldset> </div> </body> </html>
+	 </form>  </fieldset> </div> </body> </html>
 

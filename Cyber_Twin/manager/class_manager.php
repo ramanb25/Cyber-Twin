@@ -261,12 +261,12 @@ class Manager
             // $type=$_POST['type'];
             $query = "INSERT INTO login (name_login,username,password,type_login) VALUES ('$userName','$userName','$password','0')";
            $data = $db->query($query);//or die(mysql_error()); 
-           if($data) { return "YOUR REGISTRATION IS COMPLETED..."; } 
+           if($data) { return "YOUR REGISTRATION IS COMPLETED"; } 
           
           } 
           else {
 
-           return "SORRY...YOU ARE ALREADY REGISTERED USER..."; 
+           return "SORRY,YOU ARE ALREADY REGISTERED!"; 
           } 
         }
 

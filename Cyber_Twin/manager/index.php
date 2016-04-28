@@ -14,7 +14,7 @@
                   ?>      
       				      <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
       				      
-                    <form  method="POST" action="timeline.php">
+                    <form  method="GET" action="timeline.php">
       				      <input type="hidden" value="timeline" name="timeline"></input>
       				      <input type="image" src="../icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
       				      <h4><?php echo "Timeline";?></h4>
@@ -22,20 +22,12 @@
 
       				      </div>
       				      
-                    <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
-      				      <form  method="GET" action="Plot.php">
-      				      <input type="hidden" name="event" value="PastFailurePlot"></input>
-      				      <input type="image"  src="../icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
-      				      <h4><?php echo "Past Failure Data";?></h4>
-      				      </form>
-      				      </div>
-
-                    
+                                        
                     <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
                     <form  method="GET" action="Plot.php">
                     <input type="hidden" name="event" value="ran"></input>
                     <input type="image"  src="../icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
-                    <h4><?php echo "Timeline All events";?></h4>
+                    <h4><?php echo "Logs";?></h4>
                     </form>
                     </div>
 
@@ -43,7 +35,7 @@
                     <form  method="GET" action="Plot.php">
                     <input type="hidden" name="event" value="LunchTeaPlot"></input>
                     <input type="image"  src="../icons/1.png" alt="Submit" width="150" height="150" value="<?php echo "hi";?>">
-                    <h4><?php echo "Line Plots";?></h4>
+                    <h4><?php echo "Plots";?></h4>
                     </form>
                     </div>
 

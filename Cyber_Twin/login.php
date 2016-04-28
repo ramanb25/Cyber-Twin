@@ -13,7 +13,7 @@ if (!$_SESSION['mytype']==$manager)
 {//echo $_SESSION['mytype'];
   echo "<script>window.location.assign('manager/index.php')</script>";
 }}
-session_destroy();
+//session_destroy();
 ?>
 
 <!DOCTYPE html>

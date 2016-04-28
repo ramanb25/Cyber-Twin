@@ -1,6 +1,6 @@
 
   <?php  include('PastFailureData.php'); ?>
-<div id="chart_div"></div>
+<div id="chart_div" style="margin:0px;padding:0px;height:50%;width:100%"></div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>     
           <script type="text/javascript">
 
@@ -12,7 +12,7 @@
 
           function drawRightY() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Month', 'Feeding unit', 'Drilling unit','Clamping unit','Milling unit'],
+                    ['Month', 'Feeding unit', 'Drilling unit','Clamping unit','Milling unit','Power unit'],
                     <?php foreach ($values as $key => $value)  { ?>
                     [
                       '<?php 
@@ -22,15 +22,15 @@
                       <?php echo $value[1]; ?>,
                       <?php echo $value[2]; ?>,
                       <?php echo $value[3]; ?>,
-                      <?php echo $value[4]; ?>],
+                      <?php echo $value[4]; ?>,
+                      <?php echo $value[5]; ?>],
                       <?php  } ?>
                     ]
                 );
 
                 var options = {
                   chart: {
-                    title: 'Failed Unit Monthwise',
-                    subtitle: 'Based on previous data'
+                    title: 'Failed Unit Monthwise'
                   },
                   hAxis: {
                     title: 'failed times',

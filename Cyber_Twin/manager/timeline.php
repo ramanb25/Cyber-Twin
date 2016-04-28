@@ -21,7 +21,7 @@ include('navbar.php')
  <div id="visualization" width="15000" height="15000"></div>
  <div id="visualizatio2" width="15000" height="15000"></div>
         <?php
-         if(isset($_POST['timeline'])){
+         if(isset($_GET['timeline'])){
        // include 'chart.php';
         //$table='job';
 
@@ -30,7 +30,7 @@ include('navbar.php')
         
         //$operator new operator();
 
-        if(!isset($_POST["event_name"])){
+        if(!isset($_GET["event_name"])){
         //$database = new Buttons();
          if($temp=$manager->get_events(NULL))
           {
@@ -45,7 +45,7 @@ include('navbar.php')
               ?>
 
           <div class="col-sm-4 col-lg-4 col-md-4 img-hover">
-              <form  method="POST" action="timeline.php">
+              <form  method="GET" action="timeline.php">
               <input type="hidden" class="btn btn-info" name="lvl" value="<?php echo $key;?>">
               <input type="hidden" class="btn btn-info" name="event_name" value="<?php echo $value[0];?>">
               <input type="hidden" class="btn btn-info" name="timeline" value="<?php echo $value[0];?>">
@@ -61,7 +61,7 @@ include('navbar.php')
       }
       else{
         
-        $manager->timeline($_POST["event_name"],"MONTH",1);}
+        $manager->timeline($_GET["event_name"],"MONTH",1);}
 
       }
 

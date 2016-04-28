@@ -1,6 +1,6 @@
 <?php include 'JobDataForPlot.php';?>
 
-  <div id="chart_div"></div>
+  <div id="chart_div" style="margin:0px;padding:0px;height:60%;width:100%"></div>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">

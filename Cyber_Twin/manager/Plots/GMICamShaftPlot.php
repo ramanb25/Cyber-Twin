@@ -48,6 +48,6 @@ function drawChart() {
 
   <body>
     <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
+    <div id="chart_div" style="margin:0px;padding:0px;height:60%;width:100%"></div>
   </body>
 </html>

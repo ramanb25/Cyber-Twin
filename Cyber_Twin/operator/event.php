@@ -60,25 +60,25 @@ session_start();
                                   <h4>Cause</h4>
                                   <div class="btn-group" data-toggle="buttons">
                                          <label class="btn btn-default active">
-                                             <input type="radio"  name="cause" value="Raw Material Unavailable" checked> Raw Material Unavailable
+                                             <input type="radio"  name="cause" value="Raw Material Unavailable" checked> <img src="../icons/Raw Material Unavailable.jpg" width="200" height="50">
                                          </label>
                                          <label class="btn btn-default">
-                                             <input type="radio"  name="cause" value="Tools Unavailable" > Tools Unavailable
+                                             <input type="radio"  name="cause" value="Tools Unavailable" > <img src="../icons/Tools Unavailable.jpg" width="200" height="50">
                                          </label>
                                           <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Tool Inspection"> Tool Inspection
+                                         <input type="radio"  name="cause" value="Tool Inspection"> <img src="../icons/Tool Inspection.jpg" width="200" height="50">
                                       </label>
                                      <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Tool Change" > Tool Change
+                                         <input type="radio"  name="cause" value="Tool Change" ><img src="../icons/Tool Change.jpg" width="200" height="50">
                                      </label>
                                      <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Coolant Refilling" > Coolant Refilling
+                                         <input type="radio"  name="cause" value="Coolant Refilling" > <img src="../icons/Coolant Refilling.jpg" width="200" height="50">
                                      </label>
                                      <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="Air Failure" > Air Failure
+                                         <input type="radio"  name="cause" value="Air Failure" > <img src="../icons/Air Failure.jpg" width="200" height="50">
                                      </label>
                                      <label class="btn btn-default">
-                                         <input type="radio"  name="cause" value="No Demand" > No Demand
+                                         <input type="radio"  name="cause" value="No Demand" > <img src="../icons/No Demand.jpg" width="200" height="50">
                                      </label>
                                  </div>
                                  <br>
@@ -103,13 +103,13 @@ session_start();
                     <h4>Cause</h4>
                     <div class="btn-group" data-toggle="buttons" >
                        <label class="btn btn-default active">
-                           <input type="radio"  name="cause" value="Busy with other machine"  checked> <img src="../icons/<?php echo $event_name; ?>.png" width="200" height="200">
+                           <input type="radio"  name="cause" value="Busy with other machine"  checked> <img src="../icons/Busy with other machine.jpg" width="200" height="50">
                        </label>
                        <label class="btn btn-default">
-                           <input type="radio"  name="cause" value="Busy with official work" > Busy with official work
+                           <input type="radio"  name="cause" value="Busy with official work" ><img src="../icons/Busy with official work.jpg" width="200" height="50">
                        </label>
                         <label class="btn btn-default">
-                       <input type="radio"  name="cause" value="Personal needs"> Personal needs
+                       <input type="radio"  name="cause" value="Personal needs"><img src="../icons/Personal needs.jpg" width="200" height="50">
                     </label>
                    </div>
 
@@ -144,13 +144,13 @@ session_start();
                    <h4>Select Component</h4>
                    <div class="btn-group" data-toggle="buttons">
                       <label class="btn btn-default active">
-                          <input type="radio" id="c1" name="component" value="GMI Cam Shaft" checked> GMI Cam Shaft
+                          <input type="radio" id="c1" name="component" value="GMI Cam Shaft" checked> <img src="../icons/GMI Cam Shaft.jpg" width="200" height="50">
                       </label>
                       <label class="btn btn-default">
-                          <input type="radio" id="c2" name="component" value="NALT Main Shaft" > NALT Main Shaft
+                          <input type="radio" id="c2" name="component" value="NALT Main Shaft" ><img src="../icons/NALT Main Shaft.jpg" width="200" height="50">
                       </label>
                       <label class="btn btn-default">
-                          <input type="radio" id="c3" name="component" value="GMI Main Shaft" > GMI Main Shaft
+                          <input type="radio" id="c3" name="component" value="GMI Main Shaft" > <img src="../icons/GMI Main Shaft.jpg" width="200" height="50">
                       </label>
                   </div>
                   <br>
@@ -190,19 +190,19 @@ session_start();
                     <h4>Failed Unit</h4>
                     <div class="btn-group" data-toggle="buttons">
                        <label class="btn btn-default active">
-                           <input type="radio"  name="failed_unit" value="Drilling Unit" checked> Drilling Unit
+                           <input type="radio"  name="failed_unit" value="Drilling Unit" checked><img src="../icons/Drilling Unit.jpg" width="200" height="50">
                        </label>
                        <label class="btn btn-default">
-                           <input type="radio"  name="failed_unit" value="Milling Unit" > Milling Unit
+                           <input type="radio"  name="failed_unit" value="Milling Unit" > <img src="../icons/Milling Unit.jpg" width="200" height="50">
                        </label>
                         <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Clamping Unit"> Clamping Unit
+                       <input type="radio"  name="failed_unit" value="Clamping Unit"> <img src="../icons/Clamping Unit.jpg" width="200" height="50">
                     </label>
                    <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Feed Unit" > Feed Unit
+                       <input type="radio"  name="failed_unit" value="Feed Unit" > <img src="../icons/Feed Unit.jpg" width="200" height="50">
                    </label>
                    <label class="btn btn-default">
-                       <input type="radio"  name="failed_unit" value="Power Unit" > Power Unit
+                       <input type="radio"  name="failed_unit" value="Power Unit" > <img src="../icons/Power Unit.jpg" width="200" height="50">
                    </label>
                    </div>
                    <h4>Mode of failure</h4>

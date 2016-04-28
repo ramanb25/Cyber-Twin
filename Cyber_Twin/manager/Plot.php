@@ -31,6 +31,7 @@
   <option value="NALTMainShaftPlot">NALTMainShaftPlot</option>
   <option value="PrecautionaryCheckPlot">PrecautionaryCheckPlot</option>
   <option value="FailurePlot">FailurePlot</option>
+  <option value="PastFailurePlot">PastFailurePlot</option>
   <option value="GMIMainShaftPlot">GMIMainShaftPlot</option>
   
 </select> <input id="button" type="submit" name="submit" value="Filter">

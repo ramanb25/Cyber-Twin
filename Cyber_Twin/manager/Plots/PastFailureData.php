@@ -1,18 +1,19 @@
   <?php 
   //$db  = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    include('../db.php');          
+    include('db.php');          
           $timeline=1;
 
           $feed=array();
           $clamping=array();
           $drilling=array();
           $milling=array();
+          $power=array();
           $group="MONTH";
           $i=0;
 
           $months=array();
           $values=array();
-          $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Clamping unit' and end_time is not null group by MONTH(end_time)";
+          $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Clamping unit' group by MONTH(start_time)";
            $result=$db->query($query);
               $items= array();
                while ($row = $result->fetch_row()) {
@@ -24,7 +25,7 @@
                 $clamping[$row[2]*100+$row[0] ]= $row[1] ;
                // echo $items[$row[0]];
               }
-              $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Drilling unit' group by MONTH(end_time)";
+              $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Drilling unit' group by MONTH(start_time)";
            $result=$db->query($query);
               $ite= array();
               $groups= array();
@@ -41,7 +42,7 @@
               }
 
 
-               $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Milling unit' group by MONTH(end_time)";
+               $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Milling unit' group by MONTH(start_time)";
            $result=$db->query($query);
               $ite= array();
               $groups= array();
@@ -57,7 +58,7 @@
                // echo $items[$row[0]];
               }
 
-               $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Feed unit' group by MONTH(end_time)";
+               $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Feed unit' group by MONTH(start_time)";
            $result=$db->query($query);
               $ite= array();
               $groups= array();
@@ -72,6 +73,24 @@
                 $feed[$row[2]*100+$row[0] ]= $row[1] ;
                // echo $items[$row[0]];
               }
+
+              $query ="SELECT MONTH(end_time),count(end_time),YEAR(end_time) FROM `machine_failure` WHERE failed_unit='Power unit' group by MONTH(start_time)";
+           $result=$db->query($query);
+              $ite= array();
+              $groups= array();
+              $i=0;
+                while ($row = $result->fetch_row()) {
+                $i++;
+                 if(!in_array($row[2]*100+$row[0], $months))
+               array_push($months, $row[2]*100+$row[0]);
+                //array_push($items, $row[0]);
+               // if(!in_array($row[1], $groups))
+                //array_push($groups, $row[1]);
+                $power[$row[2]*100+$row[0] ]= $row[1] ;
+               // echo $items[$row[0]];
+              }
+
+
               function figure($value,$array){
 
                  if(array_key_exists($value, $array))
@@ -87,7 +106,8 @@
                                     figure($value,$feed),
                                     figure($value,$drilling) ,
                                     figure($value,$clamping),//TODO if no data then error
-                                    figure($value,$milling)
+                                    figure($value,$milling),
+                                    figure($value,$power)
                                 )
                           );
               }
